@@ -1,7 +1,7 @@
 %define name cdrkit
 
-%define release %mkrel 4
-%define version 1.1.2
+%define release %mkrel 1
+%define version 1.1.5.1
 %define prefix /usr
 
 Name: %{name}
