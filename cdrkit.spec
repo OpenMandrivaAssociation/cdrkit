@@ -1,7 +1,7 @@
 %define name cdrkit
 
 %define release %mkrel 1
-%define version 1.1.5.1
+%define version 1.1.6
 %define prefix /usr
 
 Name: %{name}
@@ -168,5 +168,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %{_mandir}/man1/cdda2ogg.1.bz2
 %attr(644,root,root) %{_mandir}/man1/icedax.1.bz2
 %attr(644,root,root) %{_mandir}/man1/pitchplay.1.bz2
-
-
