@@ -133,9 +133,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,cdwriter) %{_bindir}/wodim
 %attr(755,root,cdwriter) %{_bindir}/readom
 %attr(755,root,cdwriter) %{_sbindir}/netscsid
-%attr(644,root,root) %{_mandir}/man1/wodim.1.bz2
-%attr(644,root,root) %{_mandir}/man1/list_audio_tracks.1.bz2
-%attr(644,root,root) %{_mandir}/man1/readom.1.bz2
+%attr(644,root,root) %{_mandir}/man1/wodim.1.*
+%attr(644,root,root) %{_mandir}/man1/list_audio_tracks.1.*
+%attr(644,root,root) %{_mandir}/man1/readom.1.*
 
 %files isotools
 %attr(-,root,root) %doc FAQ TODO FORK VERSION COPYING START INSTALL ABOUT
@@ -144,19 +144,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,cdwriter) %{_bindir}/isodump
 %attr(755,root,cdwriter) %{_bindir}/isoinfo
 %attr(755,root,cdwriter) %{_bindir}/isovfy
-%attr(644,root,root) %{_mandir}/man1/devdump.1.bz2
-%attr(644,root,root) %{_mandir}/man1/isodump.1.bz2
-%attr(644,root,root) %{_mandir}/man1/isoinfo.1.bz2
-%attr(644,root,root) %{_mandir}/man1/isovfy.1.bz2
-%attr(644,root,root) %{_mandir}/man1/isodebug.1.bz2
+%attr(644,root,root) %{_mandir}/man1/devdump.1.*
+%attr(644,root,root) %{_mandir}/man1/isodump.1.*
+%attr(644,root,root) %{_mandir}/man1/isoinfo.1.*
+%attr(644,root,root) %{_mandir}/man1/isovfy.1.*
+%attr(644,root,root) %{_mandir}/man1/isodebug.1.*
 
 %files genisoimage
 %attr(-,root,root) %doc FAQ TODO FORK VERSION COPYING START INSTALL ABOUT
 %attr(755,root,root) %{_bindir}/genisoimage
 %attr(755,root,root) %{_bindir}/dirsplit
-%attr(644,root,root) %{_mandir}/man1/genisoimage.1.bz2
-%attr(644,root,root) %{_mandir}/man5/genisoimagerc.5.bz2
-%attr(644,root,root) %{_mandir}/man1/dirsplit.1.bz2
+%attr(644,root,root) %{_mandir}/man1/genisoimage.1.*
+%attr(644,root,root) %{_mandir}/man5/genisoimagerc.5.*
+%attr(644,root,root) %{_mandir}/man1/dirsplit.1.*
 
 %files icedax
 %attr(-,root,root) %doc FAQ TODO FORK VERSION COPYING START INSTALL ABOUT doc/icedax 
@@ -165,7 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,cdwriter) %{_bindir}/cdda2ogg
 %attr(755,root,cdwriter) %{_bindir}/pitchplay
 %attr(755,root,cdwriter) %{_bindir}/readmult
-%attr(644,root,root) %{_mandir}/man1/readmult.1.bz2
-%attr(644,root,root) %{_mandir}/man1/cdda2ogg.1.bz2
-%attr(644,root,root) %{_mandir}/man1/icedax.1.bz2
-%attr(644,root,root) %{_mandir}/man1/pitchplay.1.bz2
+%attr(644,root,root) %{_mandir}/man1/readmult.1.*
+%attr(644,root,root) %{_mandir}/man1/cdda2ogg.1.*
+%attr(644,root,root) %{_mandir}/man1/icedax.1.*
+%attr(644,root,root) %{_mandir}/man1/pitchplay.1.*
