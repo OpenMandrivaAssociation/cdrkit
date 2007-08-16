@@ -1,6 +1,6 @@
 %define name cdrkit
 
-%define release %mkrel 1
+%define release %mkrel 2
 %define version 1.1.6
 %define prefix /usr
 
@@ -73,6 +73,7 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %make
 
 %install
+perl -pi -e 's!local/bin/perl!bin/perl!' ./doc/icedax/tracknames.pl
 
 %makeinstall PREFIX=%{buildroot}%{_prefix}
 
