@@ -1,5 +1,5 @@
 %define name	cdrkit
-%define release	%mkrel 4
+%define release	%mkrel 5
 %define version	1.1.6
 
 Name:		%{name}
