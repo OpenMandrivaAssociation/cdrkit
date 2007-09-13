@@ -78,7 +78,7 @@ fi
 
 %post icedax
 update-alternatives --install %{_bindir}/cdda2wav cdda2wav %{_bindir}/icedax 10 \
-    --slave %_mandir/man1/cdda2wav.1.%{_extension} cdda2wav.1.%{_extension} %_mandir/man1/icedax.1%{_extension}
+    --slave %_mandir/man1/cdda2wav.1%{_extension} cdda2wav.1%{_extension} %_mandir/man1/icedax.1%{_extension}
 
 %postun icedax
 %_postun_groupdel cdwriter
@@ -94,15 +94,15 @@ fi
 
 %post
 update-alternatives --install %{_bindir}/cdrecord cdrecord %{_bindir}/wodim 10 \
-    --slave %_mandir/man1/cdrecord.1.%{_extension} cdrecord.1.%{_extension} %_mandir/man1/wodim.1%{_extension}
+    --slave %_mandir/man1/cdrecord.1%{_extension} cdrecord.1%{_extension} %_mandir/man1/wodim.1%{_extension}
 update-alternatives --install %{_bindir}/readcd readcd %{_bindir}/readom 10 \
-    --slave %_mandir/man1/readcd.1.%{_extension} readcd.1.%{_extension} %_mandir/man1/readom.1%{_extension}
+    --slave %_mandir/man1/readcd.1%{_extension} readcd.1%{_extension} %_mandir/man1/readom.1%{_extension}
 
 %post genisoimage
 update-alternatives --install %{_bindir}/mkisofs mkisofs %{_bindir}/genisoimage 10 \
-    --slave %_mandir/man1/mkisofs.1.%{_extension} mkisofs.1.%{_extension} %_mandir/man1/genisoimage.1%{_extension}
+    --slave %_mandir/man1/mkisofs.1%{_extension} mkisofs.1%{_extension} %_mandir/man1/genisoimage.1%{_extension}
 update-alternatives --install %{_bindir}/mkhybrid mkhybrid %{_bindir}/genisoimage 10 \
-    --slave %_mandir/man1/mkhybrid.1.%{_extension} mkhybrid.1.%{_extension} %_mandir/man1/genisoimage.1%{_extension}
+    --slave %_mandir/man1/mkhybrid.1%{_extension} mkhybrid.1%{_extension} %_mandir/man1/genisoimage.1%{_extension}
 
 %postun genisoimage
 if [ "$1" = "0" ]; then
