@@ -10,7 +10,6 @@ Summary:	A command line CD/DVD-Recorder
 Group:		Archiving/Cd burning
 URL:		http://cdrkit.org/
 Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 Requires(pre):	/usr/sbin/groupadd rpm-helper
 Obsoletes:	cdrecord-dvdhack =< 4:2.01-0.a15.2mdk cdrecord =< 4:2.01.01-0.a11-3mdv
 Provides:	cdrecord-dvdhack = 4:2.01.01-1mdv cdrecord = 4:2.01.01-1mdv
