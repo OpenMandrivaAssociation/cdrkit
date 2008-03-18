@@ -1,6 +1,6 @@
 %define name	cdrkit
-%define release	%mkrel 5
-%define version	1.1.6
+%define release	%mkrel 1
+%define version	1.1.7.1
 
 Name:		%{name}
 Version:	%{version}
@@ -10,11 +10,14 @@ Summary:	A command line CD/DVD-Recorder
 Group:		Archiving/Cd burning
 URL:		http://cdrkit.org/
 Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRequires:	cmake
+BuildRequires:	bzip2-devel
+BuildRequires:	zlib-devel
+BuildRequires:	libcap-devel
 Requires(pre):	/usr/sbin/groupadd rpm-helper
 Obsoletes:	cdrecord-dvdhack =< 4:2.01-0.a15.2mdk cdrecord =< 4:2.01.01-0.a11-3mdv
 Provides:	cdrecord-dvdhack = 4:2.01.01-1mdv cdrecord = 4:2.01.01-1mdv
-BuildRequires:	libcap-devel cmake zlib-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %package icedax
 Summary:	CD-Audio to .wav converter
@@ -57,9 +60,12 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %setup -q -n %{name}-%{version}
 
 %build
+%cmake
+
 %make
 
 %install
+rm -fr %{buildroot}
 perl -pi -e 's!local/bin/perl!bin/perl!' ./doc/icedax/tracknames.pl
 %makeinstall PREFIX=%{buildroot}%{_prefix}
 
@@ -111,47 +117,47 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
-%attr(-,root,root) %doc FAQ TODO FORK VERSION START INSTALL ABOUT doc/DOC-OVERVIEW doc/PORTABILITY doc/READMEs doc/WHY doc/plattforms doc/wodim/
-
-%attr(755,root,cdwriter) %{_bindir}/wodim
-%attr(755,root,cdwriter) %{_bindir}/readom
-%attr(755,root,cdwriter) %{_sbindir}/netscsid
-%attr(644,root,root) %{_mandir}/man1/wodim.1.*
-%attr(644,root,root) %{_mandir}/man1/list_audio_tracks.1.*
-%attr(644,root,root) %{_mandir}/man1/readom.1.*
+%defattr(-,root,root)
+%doc FAQ TODO FORK VERSION START ABOUT doc/DOC-OVERVIEW doc/PORTABILITY doc/READMEs doc/WHY doc/plattforms doc/wodim/
+%{_bindir}/wodim
+%{_bindir}/readom
+%{_sbindir}/netscsid
+%{_mandir}/man1/wodim.1.*
+%{_mandir}/man1/list_audio_tracks.1.*
+%{_mandir}/man1/readom.1.*
 
 %files isotools
-%attr(-,root,root) %doc FAQ TODO FORK VERSION START INSTALL ABOUT
-%attr(755,root,cdwriter) %{_bindir}/devdump
-%attr(755,root,cdwriter) %{_bindir}/isodebug
-%attr(755,root,cdwriter) %{_bindir}/isodump
-%attr(755,root,cdwriter) %{_bindir}/isoinfo
-%attr(755,root,cdwriter) %{_bindir}/isovfy
-%attr(644,root,root) %{_mandir}/man1/devdump.1.*
-%attr(644,root,root) %{_mandir}/man1/isodump.1.*
-%attr(644,root,root) %{_mandir}/man1/isoinfo.1.*
-%attr(644,root,root) %{_mandir}/man1/isovfy.1.*
-%attr(644,root,root) %{_mandir}/man1/isodebug.1.*
+%defattr(-,root,root)
+%{_bindir}/devdump
+%{_bindir}/isodebug
+%{_bindir}/isodump
+%{_bindir}/isoinfo
+%{_bindir}/isovfy
+%{_mandir}/man1/devdump.1.*
+%{_mandir}/man1/isodump.1.*
+%{_mandir}/man1/isoinfo.1.*
+%{_mandir}/man1/isovfy.1.*
+%{_mandir}/man1/isodebug.1.*
 
 %files genisoimage
-%attr(-,root,root) %doc FAQ TODO FORK VERSION START INSTALL ABOUT
-%attr(755,root,root) %{_bindir}/genisoimage
-%attr(755,root,root) %{_bindir}/dirsplit
-%attr(644,root,root) %{_mandir}/man1/genisoimage.1.*
-%attr(644,root,root) %{_mandir}/man5/genisoimagerc.5.*
-%attr(644,root,root) %{_mandir}/man1/dirsplit.1.*
+%defattr(-,root,root)
+%{_bindir}/genisoimage
+%{_bindir}/dirsplit
+%{_mandir}/man1/genisoimage.1.*
+%{_mandir}/man5/genisoimagerc.5.*
+%{_mandir}/man1/dirsplit.1.*
 
 %files icedax
-%attr(-,root,root) %doc FAQ TODO FORK VERSION START INSTALL ABOUT doc/icedax 
-%attr(755,root,cdwriter) %{_bindir}/icedax
-%attr(755,root,cdwriter) %{_bindir}/cdda2mp3
-%attr(755,root,cdwriter) %{_bindir}/cdda2ogg
-%attr(755,root,cdwriter) %{_bindir}/pitchplay
-%attr(755,root,cdwriter) %{_bindir}/readmult
-%attr(644,root,root) %{_mandir}/man1/readmult.1.*
-%attr(644,root,root) %{_mandir}/man1/cdda2ogg.1.*
-%attr(644,root,root) %{_mandir}/man1/icedax.1.*
-%attr(644,root,root) %{_mandir}/man1/pitchplay.1.*
+%defattr(-,root,root)
+%{_bindir}/icedax
+%{_bindir}/cdda2mp3
+%{_bindir}/cdda2ogg
+%{_bindir}/pitchplay
+%{_bindir}/readmult
+%{_mandir}/man1/readmult.1.*
+%{_mandir}/man1/cdda2ogg.1.*
+%{_mandir}/man1/icedax.1.*
+%{_mandir}/man1/pitchplay.1.*
