@@ -1,12 +1,8 @@
-%define name	cdrkit
-%define release	%mkrel 1
-%define version	1.1.8
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-License:	GPLv2+
 Summary:	A command line CD/DVD-Recorder
+Name:		cdrkit
+Version:	1.1.8
+Release:	%mkrel 2
+License:	GPLv2+
 Group:		Archiving/Cd burning
 URL:		http://cdrkit.org/
 Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
@@ -18,7 +14,7 @@ BuildRequires:	magic-devel
 Requires(pre):	/usr/sbin/groupadd rpm-helper
 Obsoletes:	cdrecord-dvdhack =< 4:2.01-0.a15.2mdk cdrecord =< 4:2.01.01-0.a11-3mdv
 Provides:	cdrecord-dvdhack = 4:2.01.01-1mdv cdrecord = 4:2.01.01-1mdv
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %package icedax
 Summary:	CD-Audio to .wav converter
