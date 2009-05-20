@@ -6,6 +6,7 @@ License:	GPLv2+
 Group:		Archiving/Cd burning
 URL:		http://cdrkit.org/
 Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
+Patch0:		cdrkit-1.1.9-wformat-error.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	zlib-devel
@@ -55,6 +56,7 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1 -b .wformat
 
 %build
 %cmake
