@@ -7,6 +7,7 @@ Group:		Archiving/Cd burning
 URL:		http://cdrkit.org/
 Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 Patch0:		cdrkit-1.1.9-wformat-error.patch
+Patch1:		cdrkit-1.1.9-types.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	zlib-devel
@@ -57,6 +58,7 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1 -b .wformat
+%patch1 -p1 -b .types
 
 %build
 %cmake
@@ -66,7 +68,7 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %install
 rm -fr %{buildroot}
 perl -pi -e 's!local/bin/perl!bin/perl!' ./doc/icedax/tracknames.pl
-%makeinstall PREFIX=%{buildroot}%{_prefix}
+%makeinstall_std -C build
 
 %pre
 %_pre_groupadd cdwriter
