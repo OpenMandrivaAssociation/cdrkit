@@ -1,13 +1,14 @@
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
 Version:	1.1.9
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2+
 Group:		Archiving/Cd burning
 URL:		http://cdrkit.org/
 Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 Patch0:		cdrkit-1.1.9-wformat-error.patch
 Patch1:		cdrkit-1.1.9-types.patch
+Patch2:         cdrkit-1.1.9-cmake2.8-build.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	zlib-devel
@@ -59,6 +60,7 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %setup -q -n %{name}-%{version}
 %patch0 -p1 -b .wformat
 %patch1 -p1 -b .types
+%patch2 -p1 -b .cmake
 
 %build
 %cmake
