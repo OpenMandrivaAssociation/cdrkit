@@ -8,7 +8,12 @@ URL:		http://cdrkit.org/
 Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 Patch0:		cdrkit-1.1.9-wformat-error.patch
 Patch1:		cdrkit-1.1.9-types.patch
+# (helio) fix build with cmake 2.8
 Patch2:         cdrkit-1.1.9-cmake2.8-build.patch
+# (fc) 1.1.9-3mdv fix buffer overflow in genisoimage (Fedora)
+Patch3:		cdrkit-1.1.9-root_option.patch
+# (fc) 1.1.9-3mdv fix buffer overflow in wodim (Fedora)
+Patch4:		cdrkit-1.1.9-buffer_overflow.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	zlib-devel
@@ -61,6 +66,8 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %patch0 -p1 -b .wformat
 %patch1 -p1 -b .types
 %patch2 -p1 -b .cmake
+%patch3 -p1 -b .root_option
+%patch4 -p1 -b .buffer_overflow
 
 %build
 %cmake
