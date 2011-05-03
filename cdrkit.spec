@@ -16,43 +16,45 @@ BuildRequires:	bzip2-devel
 BuildRequires:	zlib-devel
 BuildRequires:	libcap-devel
 BuildRequires:	magic-devel
-Requires(pre):	/usr/sbin/groupadd rpm-helper
-Obsoletes:	cdrecord-dvdhack =< 4:2.01-0.a15.2mdk cdrecord =< 4:2.01.01-0.a11-3mdv
-Provides:	cdrecord-dvdhack = 4:2.01.01-1mdv cdrecord = 4:2.01.01-1mdv
+Requires(pre):	shadow-utils rpm-helper
+Obsoletes:	cdrecord-dvdhack <= 4:2.01-0.a15.2
+Obsoletes:	cdrecord <= 4:2.01.01-0.a11.3
+Provides:	cdrecord-dvdhack = 4:2.01.01-1
+Provides:	cdrecord = 4:2.01.01-1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
-%package icedax
-Summary:	CD-Audio to .wav converter
-Group:		Sound
-Obsoletes:	cdrecord-cdda2wav <= 4:2.01.01-0.a11.3mdv
-Provides:	cdrecord-cdda2wav
-Requires(pre):	rpm-helper
-
-%package genisoimage
-Group:		Archiving/Cd burning
-Obsoletes:	mkisofs <= 1:2.01.01-0.a11.3mdv
-Provides:	mkisofs
-Summary:	Creates an image of an ISO9660 filesystem
-
-%package isotools
-Group:		Archiving/Cd burning
-Obsoletes:	cdrecord-isotools
-Provides:	cdrecord-isotools
-Conflicts:	cdrecord =< 4:2.01.01-0.a11.3mdv
-Summary:	Collection of ISO files related tools
-Requires(pre):	/usr/sbin/groupadd rpm-helper
 
 %description
 wodim allows you to create CDs and DVDs on a CD-Recorder or DVD-Recorder
 (SCSI/ATAPI). It supports data, audio, mixed, multi-session, CD+, DVD,
 DVD-Video discs etc.
 
+%package icedax
+Summary:	CD-Audio to .wav converter
+Group:		Sound
+Obsoletes:	cdrecord-cdda2wav <= 4:2.01.01-0.a11.3
+Provides:	cdrecord-cdda2wav
+Requires(pre):	rpm-helper
+
 %description icedax
 icedax reads audio CDs, outputting a wav file.
+
+%package genisoimage
+Group:		Archiving/Cd burning
+Obsoletes:	mkisofs <= 1:2.01.01-0.a11.3
+Provides:	mkisofs
+Summary:	Creates an image of an ISO9660 filesystem
 
 %description genisoimage
 genisoimage is used to create ISO 9660 file system images for creating
 CD-ROMs. Now includes support for making bootable "El Torito" CD-ROMs.
+
+%package isotools
+Group:		Archiving/Cd burning
+Obsoletes:	cdrecord-isotools
+Provides:	cdrecord-isotools
+Conflicts:	cdrecord <= 4:2.01.01-0.a11.3
+Summary:	Collection of ISO files related tools
+Requires(pre):	shadow-utils rpm-helper
 
 %description isotools
 This package is a collection of ISO 9660 commands to dump and test images:
