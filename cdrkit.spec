@@ -1,19 +1,20 @@
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
 Version:	1.1.11
-Release:	%mkrel 2
+Release:	%mkrel 5
 License:	GPLv2+
 Group:		Archiving/Cd burning
 URL:		http://cdrkit.org/
-Source:		http://cdrkit.org/releases/%{name}-%{version}.tar.gz
+Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 Patch0:		cdrkit-1.1.9-wformat-error.patch
 # (helio) fix build with cmake 2.8
 Patch2:         cdrkit-1.1.9-cmake2.8-build.patch
 # (fc) 1.1.9-3mdv fix buffer overflow in wodim (Fedora)
 Patch4:		cdrkit-1.1.9-buffer_overflow.patch
+Patch5:         cdrkit-1.1.9-efi-boot.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
-BuildRequires:	zlib-devel
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	libcap-devel
 BuildRequires:	magic-devel
 Requires(pre):	shadow-utils rpm-helper
@@ -21,7 +22,6 @@ Obsoletes:	cdrecord-dvdhack <= 4:2.01-0.a15.2
 Obsoletes:	cdrecord <= 4:2.01.01-0.a11.3
 Provides:	cdrecord-dvdhack = 4:2.01.01-1
 Provides:	cdrecord = 4:2.01.01-1
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 wodim allows you to create CDs and DVDs on a CD-Recorder or DVD-Recorder
@@ -42,6 +42,7 @@ icedax reads audio CDs, outputting a wav file.
 Group:		Archiving/Cd burning
 Obsoletes:	mkisofs <= 1:2.01.01-0.a11.3
 Provides:	mkisofs
+Provides:	genisoimage
 Summary:	Creates an image of an ISO9660 filesystem
 
 %description genisoimage
@@ -65,6 +66,7 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %patch0 -p1 -b .wformat
 %patch2 -p1 -b .cmake
 %patch4 -p1 -b .buffer_overflow
+%patch5 -p1
 
 %build
 %cmake
@@ -123,11 +125,7 @@ if [ "$1" = "0" ]; then
   update-alternatives --remove mkhybrid %{_bindir}/genisoimage
 fi
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc FAQ TODO FORK VERSION START ABOUT doc/DOC-OVERVIEW doc/PORTABILITY doc/READMEs doc/WHY doc/plattforms doc/wodim/
 %{_bindir}/wodim
 %{_bindir}/readom
@@ -137,7 +135,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/readom.1.*
 
 %files isotools
-%defattr(-,root,root)
 %{_bindir}/devdump
 %{_bindir}/isodebug
 %{_bindir}/isodump
@@ -150,7 +147,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/isodebug.1.*
 
 %files genisoimage
-%defattr(-,root,root)
 %{_bindir}/genisoimage
 %{_bindir}/dirsplit
 %{_mandir}/man1/genisoimage.1.*
@@ -158,7 +154,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dirsplit.1.*
 
 %files icedax
-%defattr(-,root,root)
 %{_bindir}/icedax
 %{_bindir}/cdda2mp3
 %{_bindir}/cdda2ogg
