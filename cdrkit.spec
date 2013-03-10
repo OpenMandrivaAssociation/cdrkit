@@ -1,10 +1,10 @@
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
 Version:	1.1.11
-Release:	%mkrel 5
+Release:	5
 License:	GPLv2+
 Group:		Archiving/Cd burning
-URL:		http://cdrkit.org/
+Url:		http://cdrkit.org/
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 Patch0:		cdrkit-1.1.9-wformat-error.patch
 # (helio) fix build with cmake 2.8
@@ -14,12 +14,11 @@ Patch4:		cdrkit-1.1.9-buffer_overflow.patch
 Patch5:         cdrkit-1.1.9-efi-boot.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
-BuildRequires:	pkgconfig(zlib)
 BuildRequires:	libcap-devel
 BuildRequires:	magic-devel
-Requires(pre):	shadow-utils rpm-helper
-Obsoletes:	cdrecord-dvdhack <= 4:2.01-0.a15.2
-Obsoletes:	cdrecord <= 4:2.01.01-0.a11.3
+BuildRequires:	pkgconfig(zlib)
+Requires(pre):	shadow-utils
+Requires(pre):	rpm-helper
 Provides:	cdrecord-dvdhack = 4:2.01.01-1
 Provides:	cdrecord = 4:2.01.01-1
 
@@ -31,7 +30,6 @@ DVD-Video discs etc.
 %package icedax
 Summary:	CD-Audio to .wav converter
 Group:		Sound
-Obsoletes:	cdrecord-cdda2wav <= 4:2.01.01-0.a11.3
 Provides:	cdrecord-cdda2wav
 Requires(pre):	rpm-helper
 
@@ -39,11 +37,10 @@ Requires(pre):	rpm-helper
 icedax reads audio CDs, outputting a wav file.
 
 %package genisoimage
+Summary:	Creates an image of an ISO9660 filesystem
 Group:		Archiving/Cd burning
-Obsoletes:	mkisofs <= 1:2.01.01-0.a11.3
 Provides:	mkisofs
 Provides:	genisoimage
-Summary:	Creates an image of an ISO9660 filesystem
 
 %description genisoimage
 genisoimage is used to create ISO 9660 file system images for creating
@@ -51,22 +48,18 @@ CD-ROMs. Now includes support for making bootable "El Torito" CD-ROMs.
 
 %package isotools
 Group:		Archiving/Cd burning
-Obsoletes:	cdrecord-isotools
-Provides:	cdrecord-isotools
-Conflicts:	cdrecord <= 4:2.01.01-0.a11.3
 Summary:	Collection of ISO files related tools
-Requires(pre):	shadow-utils rpm-helper
+Provides:	cdrecord-isotools
+Requires(pre):	shadow-utils
+Requires(pre):	rpm-helper
 
 %description isotools
 This package is a collection of ISO 9660 commands to dump and test images:
 isodebug, isodump, isoinfo, isovfy, devdump.
 
 %prep
-%setup -q -n %{name}-%{version}
-%patch0 -p1 -b .wformat
-%patch2 -p1 -b .cmake
-%patch4 -p1 -b .buffer_overflow
-%patch5 -p1
+%setup -q
+%apply_patches
 
 %build
 %cmake
@@ -74,8 +67,7 @@ isodebug, isodump, isoinfo, isovfy, devdump.
 %make
 
 %install
-rm -fr %{buildroot}
-perl -pi -e 's!local/bin/perl!bin/perl!' ./doc/icedax/tracknames.pl
+sed -i -e 's!local/bin/perl!bin/perl!' ./doc/icedax/tracknames.pl
 %makeinstall_std -C build
 
 %pre
@@ -130,9 +122,9 @@ fi
 %{_bindir}/wodim
 %{_bindir}/readom
 %{_sbindir}/netscsid
-%{_mandir}/man1/wodim.1.*
-%{_mandir}/man1/list_audio_tracks.1.*
-%{_mandir}/man1/readom.1.*
+%{_mandir}/man1/wodim.1*
+%{_mandir}/man1/list_audio_tracks.1*
+%{_mandir}/man1/readom.1*
 
 %files isotools
 %{_bindir}/devdump
@@ -140,18 +132,18 @@ fi
 %{_bindir}/isodump
 %{_bindir}/isoinfo
 %{_bindir}/isovfy
-%{_mandir}/man1/devdump.1.*
-%{_mandir}/man1/isodump.1.*
-%{_mandir}/man1/isoinfo.1.*
-%{_mandir}/man1/isovfy.1.*
-%{_mandir}/man1/isodebug.1.*
+%{_mandir}/man1/devdump.1*
+%{_mandir}/man1/isodump.1*
+%{_mandir}/man1/isoinfo.1*
+%{_mandir}/man1/isovfy.1*
+%{_mandir}/man1/isodebug.1*
 
 %files genisoimage
 %{_bindir}/genisoimage
 %{_bindir}/dirsplit
-%{_mandir}/man1/genisoimage.1.*
-%{_mandir}/man5/genisoimagerc.5.*
-%{_mandir}/man1/dirsplit.1.*
+%{_mandir}/man1/genisoimage.1*
+%{_mandir}/man5/genisoimagerc.5*
+%{_mandir}/man1/dirsplit.1*
 
 %files icedax
 %{_bindir}/icedax
@@ -159,7 +151,8 @@ fi
 %{_bindir}/cdda2ogg
 %{_bindir}/pitchplay
 %{_bindir}/readmult
-%{_mandir}/man1/readmult.1.*
-%{_mandir}/man1/cdda2ogg.1.*
-%{_mandir}/man1/icedax.1.*
-%{_mandir}/man1/pitchplay.1.*
+%{_mandir}/man1/readmult.1*
+%{_mandir}/man1/cdda2ogg.1*
+%{_mandir}/man1/icedax.1*
+%{_mandir}/man1/pitchplay.1*
+
