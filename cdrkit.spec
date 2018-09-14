@@ -6,12 +6,27 @@ License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://cdrkit.org/
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
-Patch0:		cdrkit-1.1.9-wformat-error.patch
+Patch0:         cdrkit-1.1.9-wformat-error.patch
 # (helio) fix build with cmake 2.8
-Patch2:         cdrkit-1.1.9-cmake2.8-build.patch
+#Patch2:     cdrkit-1.1.9-cmake2.8-build.patch
 # (fc) 1.1.9-3mdv fix buffer overflow in wodim (Fedora)
-Patch4:		cdrkit-1.1.9-buffer_overflow.patch
-Patch5:         cdrkit-1.1.9-efi-boot.patch
+Patch4:         cdrkit-1.1.9-buffer_overflow.patch
+Patch5:     cdrkit-1.1.9-efi-boot.patch
+#Patch6:     cdrkit-1.1.11-paranoiacdda.patch
+Patch7:     cdrkit-1.1.11-devname.patch
+Patch8:     cdrkit-1.1.11-format.patch
+Patch9:     cdrkit-1.1.11-handler.patch
+Patch10:    cdrkit-1.1.11-manpagefix.patch
+Patch11:    cdrkit-1.1.11-memset.patch
+Patch12:     cdrkit-1.1.11-cmakewarn.patch
+Patch13:    cdrkit-1.1.11-ppc64le_elfheader.patch
+Patch14:    cdrkit-1.1.11-readsegfault.patch
+Patch16:    cdrkit-1.1.11-rootstat.patch
+Patch17:    cdrkit-1.1.11-sysmacros.patch
+Patch18:    cdrkit-1.1.11-usalinst.patch
+Patch19:    cdrkit-1.1.11-utf8.patch
+Patch20:    cdrkit-1.1.11-werror_gcc5.patch
+
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	libcap-devel
