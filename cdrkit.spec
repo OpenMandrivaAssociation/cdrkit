@@ -2,8 +2,8 @@
 %global optflags %optflags -Wno-error=format-security -fno-strict-aliasing
 
 %define develname %mklibname usal -d
-%define libusal %mklibname usal 1
-%define librols %mklibname rols 1
+%define libusal %mklibname usal 0
+%define librols %mklibname rols 0
 
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
