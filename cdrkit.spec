@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
 Version:	1.1.11
@@ -12,7 +14,7 @@ Patch0:         cdrkit-1.1.9-wformat-error.patch
 # (fc) 1.1.9-3mdv fix buffer overflow in wodim (Fedora)
 Patch4:         cdrkit-1.1.9-buffer_overflow.patch
 Patch5:     cdrkit-1.1.9-efi-boot.patch
-#Patch6:     cdrkit-1.1.11-paranoiacdda.patch
+Patch6:     cdrkit-1.1.11-paranoiacdda.patch
 Patch7:     cdrkit-1.1.11-devname.patch
 Patch8:     cdrkit-1.1.11-format.patch
 Patch9:     cdrkit-1.1.11-handler.patch
@@ -33,6 +35,7 @@ BuildRequires:	pkgconfig(libcap)
 BuildRequires:	magic-devel
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:  rpm-helper
+BuildRequires:  cdda-devel
 Requires(pre):	shadow
 Requires(pre,post):	rpm-helper
 Provides:	cdrecord-dvdhack = 4:2.01.01-1
