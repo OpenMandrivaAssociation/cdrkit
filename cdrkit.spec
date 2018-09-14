@@ -17,6 +17,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	libcap-devel
 BuildRequires:	magic-devel
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:  rpm-helper
 Requires(pre):	shadow-utils
 Requires(pre):	rpm-helper
 Provides:	cdrecord-dvdhack = 4:2.01.01-1
@@ -31,6 +32,7 @@ DVD-Video discs etc.
 Summary:	CD-Audio to .wav converter
 Group:		Sound
 Provides:	cdrecord-cdda2wav
+BuildRequires:  rpm-helper
 Requires(pre):	rpm-helper
 
 %description icedax
@@ -49,6 +51,7 @@ CD-ROMs. Now includes support for making bootable "El Torito" CD-ROMs.
 %package isotools
 Group:		Archiving/Cd burning
 Summary:	Collection of ISO files related tools
+BuildRequires:  rpm-helper
 Provides:	cdrecord-isotools
 Requires(pre):	shadow-utils
 Requires(pre):	rpm-helper
