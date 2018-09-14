@@ -8,26 +8,26 @@ License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://cdrkit.org/
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
-Patch0:         cdrkit-1.1.9-wformat-error.patch
-# (helio) fix build with cmake 2.8
-#Patch2:     cdrkit-1.1.9-cmake2.8-build.patch
-# (fc) 1.1.9-3mdv fix buffer overflow in wodim (Fedora)
-Patch4:         cdrkit-1.1.9-buffer_overflow.patch
-Patch5:     cdrkit-1.1.9-efi-boot.patch
-Patch6:     cdrkit-1.1.11-paranoiacdda.patch
-Patch7:     cdrkit-1.1.11-devname.patch
-Patch8:     cdrkit-1.1.11-format.patch
-Patch9:     cdrkit-1.1.11-handler.patch
-Patch10:    cdrkit-1.1.11-manpagefix.patch
-Patch11:    cdrkit-1.1.11-memset.patch
-Patch12:     cdrkit-1.1.11-cmakewarn.patch
-Patch13:    cdrkit-1.1.11-ppc64le_elfheader.patch
-Patch14:    cdrkit-1.1.11-readsegfault.patch
-Patch16:    cdrkit-1.1.11-rootstat.patch
-Patch17:    cdrkit-1.1.11-sysmacros.patch
-Patch18:    cdrkit-1.1.11-usalinst.patch
-Patch19:    cdrkit-1.1.11-utf8.patch
-Patch20:    cdrkit-1.1.11-werror_gcc5.patch
+Patch1: cdrkit-1.1.8-werror.patch
+Patch2: cdrkit-1.1.9-efi-boot.patch
+Patch4: cdrkit-1.1.9-no_mp3.patch
+Patch5: cdrkit-1.1.9-buffer_overflow.patch
+Patch6: cdrkit-1.1.10-build-fix.patch
+Patch7: cdrkit-1.1.11-manpagefix.patch
+Patch8: cdrkit-1.1.11-rootstat.patch
+Patch9: cdrkit-1.1.11-usalinst.patch
+Patch10: cdrkit-1.1.11-readsegfault.patch
+Patch11: cdrkit-1.1.11-format.patch
+Patch12: cdrkit-1.1.11-handler.patch
+Patch13: cdrkit-1.1.11-dvdman.patch
+Patch14: cdrkit-1.1.11-paranoiacdda.patch
+Patch15: cdrkit-1.1.11-utf8.patch
+Patch16: cdrkit-1.1.11-cmakewarn.patch
+Patch17: cdrkit-1.1.11-memset.patch
+Patch19: cdrkit-1.1.11-ppc64le_elfheader.patch
+Patch20: cdrkit-1.1.11-werror_gcc5.patch
+Patch21: cdrkit-1.1.11-devname.patch
+Patch22: cdrkit-1.1.11-sysmacros.patch
 
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(bzip2)
@@ -78,17 +78,15 @@ This package is a collection of ISO 9660 commands to dump and test images:
 isodebug, isodump, isoinfo, isovfy, devdump.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 %cmake
-
-%make
+%make_build
 
 %install
 sed -i -e 's!local/bin/perl!bin/perl!' ./doc/icedax/tracknames.pl
-%makeinstall_std -C build
+%make_install -C build
 
 %pre
 %_pre_groupadd cdwriter
