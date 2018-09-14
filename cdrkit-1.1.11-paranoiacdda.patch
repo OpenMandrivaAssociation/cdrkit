@@ -25,7 +25,7 @@ diff -up cdrkit-1.1.11/icedax/CMakeLists.txt.paranoiacdda cdrkit-1.1.11/icedax/C
  ENDIF(HAVE_LIBOSSAUDIO)
  
 -LIST(APPEND EXTRA_LIBS  paranoia)
-+CHECK_INCLUDE_FILES(cdio/paranoia/cdda_interface.h HAVE_CDDA_INTERFACE_H)
++CHECK_INCLUDE_FILES(cdda/cdda_interface.h HAVE_CDDA_INTERFACE_H)
 +CHECK_LIBRARY_EXISTS (cdda_paranoia paranoia_init "" HAVE_LIBPARANOIA)
 +IF(HAVE_CDDA_INTERFACE_H AND HAVE_LIBPARANOIA)
 +   LIST(APPEND EXTRA_LIBS cdda_paranoia cdda_interface)

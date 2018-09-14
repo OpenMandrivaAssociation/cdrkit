@@ -1,4 +1,5 @@
 %define _disable_ld_no_undefined 1
+%global optflags %optflags -Wno-error=format-security -fno-strict-aliasing
 
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
@@ -8,34 +9,33 @@ License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://cdrkit.org/
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
-Patch1: cdrkit-1.1.8-werror.patch
-Patch2: cdrkit-1.1.9-efi-boot.patch
-Patch4: cdrkit-1.1.9-no_mp3.patch
-Patch5: cdrkit-1.1.9-buffer_overflow.patch
-Patch6: cdrkit-1.1.10-build-fix.patch
-Patch7: cdrkit-1.1.11-manpagefix.patch
-Patch8: cdrkit-1.1.11-rootstat.patch
-Patch9: cdrkit-1.1.11-usalinst.patch
-Patch10: cdrkit-1.1.11-readsegfault.patch
-Patch11: cdrkit-1.1.11-format.patch
-Patch12: cdrkit-1.1.11-handler.patch
-Patch13: cdrkit-1.1.11-dvdman.patch
-Patch14: cdrkit-1.1.11-paranoiacdda.patch
-Patch15: cdrkit-1.1.11-utf8.patch
-Patch16: cdrkit-1.1.11-cmakewarn.patch
-Patch17: cdrkit-1.1.11-memset.patch
-Patch19: cdrkit-1.1.11-ppc64le_elfheader.patch
-Patch20: cdrkit-1.1.11-werror_gcc5.patch
-Patch21: cdrkit-1.1.11-devname.patch
-Patch22: cdrkit-1.1.11-sysmacros.patch
-
+Patch1:		cdrkit-1.1.8-werror.patch
+Patch2:		cdrkit-1.1.9-efi-boot.patch
+Patch4:		cdrkit-1.1.9-no_mp3.patch
+Patch5:		cdrkit-1.1.9-buffer_overflow.patch
+Patch6:		cdrkit-1.1.10-build-fix.patch
+Patch7:		cdrkit-1.1.11-manpagefix.patch
+Patch8:		cdrkit-1.1.11-rootstat.patch
+Patch9:		cdrkit-1.1.11-usalinst.patch
+Patch10:	cdrkit-1.1.11-readsegfault.patch
+Patch11:	cdrkit-1.1.11-format.patch
+Patch12:	cdrkit-1.1.11-handler.patch
+Patch13:	cdrkit-1.1.11-dvdman.patch
+Patch14:	cdrkit-1.1.11-paranoiacdda.patch
+Patch15:	cdrkit-1.1.11-utf8.patch
+Patch16:	cdrkit-1.1.11-cmakewarn.patch
+Patch17:	cdrkit-1.1.11-memset.patch
+Patch19:	cdrkit-1.1.11-ppc64le_elfheader.patch
+Patch20:	cdrkit-1.1.11-werror_gcc5.patch
+Patch21:	cdrkit-1.1.11-devname.patch
+Patch22:	cdrkit-1.1.11-sysmacros.patch
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	pkgconfig(libcap)
 BuildRequires:	magic-devel
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:  rpm-helper
-BuildRequires:  cdda-devel
+BuildRequires:	rpm-helper
+BuildRequires:	cdda-devel
 Requires(pre):	shadow
 Requires(pre,post):	rpm-helper
 Provides:	cdrecord-dvdhack = 4:2.01.01-1
@@ -78,7 +78,35 @@ This package is a collection of ISO 9660 commands to dump and test images:
 isodebug, isodump, isoinfo, isovfy, devdump.
 
 %prep
-%autosetup -p1
+%setup -q
+
+%patch1 -p1 -b .werror
+%patch2 -p1 -b .efi
+%patch4 -p1 -b .no_mp3
+%patch5 -p1 -b .buffer_overflow
+%patch6 -p1 -b .build-fix
+%patch7 -p1 -b .manpagefix
+%patch8 -p1 -b .rootstat
+%patch9 -p1 -b .usalinst
+%patch10 -p1 -b .readsegfault
+%patch11 -p1 -b .format
+%patch12 -p1 -b .handler
+%patch13 -p1 -b .dvdman
+%patch14 -p1 -b .paranoiacdda
+# not using -b since otherwise backup files would be included into rpm
+%patch15 -p1
+%patch16 -p1 -b .cmakewarn
+%patch17 -p1 -b .edcspeed
+%patch19 -p1 -b .elfheader
+%patch20 -p1 -b .werror_gcc5
+%patch21 -p1 -b .devname
+%patch22 -p1 -b .sysmacros
+
+# we do not want bundled paranoia library
+rm -rf libparanoia
+
+find . -type f -print0 | xargs -0 perl -pi -e 's#/usr/local/bin/perl#/usr/bin/perl#g'
+find doc -type f -print0 | xargs -0 chmod a-x
 
 %build
 %cmake
