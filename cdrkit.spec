@@ -1,6 +1,10 @@
 %define _disable_ld_no_undefined 1
 %global optflags %optflags -Wno-error=format-security -fno-strict-aliasing
 
+%define develname %mklibname usal -d
+%define libusal %mklibname usal 1
+%define librols %mklibname rols 1
+
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
 Version:	1.1.11
@@ -32,6 +36,7 @@ Patch22:	cdrkit-1.1.11-sysmacros.patch
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	pkgconfig(libcap)
+BuildRequires:	pkgconfig(libcdio_paranoia)
 BuildRequires:	magic-devel
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	rpm-helper
@@ -76,6 +81,15 @@ Requires(pre,postun):	rpm-helper
 %description isotools
 This package is a collection of ISO 9660 commands to dump and test images:
 isodebug, isodump, isoinfo, isovfy, devdump.
+
+%package -n %{develname}
+Summary:	Development files for using cdrkit's libraries
+Group:		Development/C
+Requires:	%{libusal} = %{EVRD}
+Requires:	%{librols} = %{EVRD}
+
+%description -n %{develname}
+Development files for using cdrkit's libraries
 
 %prep
 %setup -q
@@ -163,6 +177,10 @@ if [ "$1" = "0" ]; then
   update-alternatives --remove mkhybrid %{_bindir}/genisoimage
 fi
 
+%libpackage rols 0
+
+%libpackage usal 0
+
 %files
 %doc FAQ TODO FORK VERSION START ABOUT doc/DOC-OVERVIEW doc/PORTABILITY doc/READMEs doc/WHY doc/plattforms doc/wodim/
 %{_bindir}/wodim
@@ -202,3 +220,6 @@ fi
 %{_mandir}/man1/icedax.1*
 %{_mandir}/man1/pitchplay.1*
 
+%files -n %{develname}
+%{_libdir}/*.so
+%{_includedir}/usal
