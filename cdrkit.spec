@@ -28,13 +28,13 @@ Patch19:    cdrkit-1.1.11-utf8.patch
 Patch20:    cdrkit-1.1.11-werror_gcc5.patch
 
 BuildRequires:	cmake
-BuildRequires:	bzip2-devel
-BuildRequires:	libcap-devel
+BuildRequires:	pkgconfig(bzip2)
+BuildRequires:	pkgconfig(libcap)
 BuildRequires:	magic-devel
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:  rpm-helper
-Requires(pre):	shadow-utils
-Requires(pre):	rpm-helper
+Requires(pre):	shadow
+Requires(pre,post):	rpm-helper
 Provides:	cdrecord-dvdhack = 4:2.01.01-1
 Provides:	cdrecord = 4:2.01.01-1
 
@@ -47,8 +47,7 @@ DVD-Video discs etc.
 Summary:	CD-Audio to .wav converter
 Group:		Sound
 Provides:	cdrecord-cdda2wav
-BuildRequires:  rpm-helper
-Requires(pre):	rpm-helper
+Requires(pre,post,postun):	rpm-helper
 
 %description icedax
 icedax reads audio CDs, outputting a wav file.
@@ -58,6 +57,7 @@ Summary:	Creates an image of an ISO9660 filesystem
 Group:		Archiving/Cd burning
 Provides:	mkisofs
 Provides:	genisoimage
+Requires(post,postun):	rpm-helper
 
 %description genisoimage
 genisoimage is used to create ISO 9660 file system images for creating
@@ -66,10 +66,9 @@ CD-ROMs. Now includes support for making bootable "El Torito" CD-ROMs.
 %package isotools
 Group:		Archiving/Cd burning
 Summary:	Collection of ISO files related tools
-BuildRequires:  rpm-helper
 Provides:	cdrecord-isotools
-Requires(pre):	shadow-utils
-Requires(pre):	rpm-helper
+Requires(pre):	shadow
+Requires(pre,postun):	rpm-helper
 
 %description isotools
 This package is a collection of ISO 9660 commands to dump and test images:
