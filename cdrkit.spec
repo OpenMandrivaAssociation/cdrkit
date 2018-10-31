@@ -8,7 +8,7 @@
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
 Version:	1.1.11
-Release:	20
+Release:	21
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://cdrkit.org/
