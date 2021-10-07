@@ -1,5 +1,5 @@
 %define _disable_ld_no_undefined 1
-%global optflags %optflags -Wno-error=format-security -fno-strict-aliasing
+%global optflags %optflags -Wno-error=format-security -fno-strict-aliasing -fcommon
 
 %define develname %mklibname usal -d
 %define libusal %mklibname usal 0
@@ -8,7 +8,7 @@
 Summary:	A command line CD/DVD-Recorder
 Name:		cdrkit
 Version:	1.1.11
-Release:	21
+Release:	22
 License:	GPLv2+
 Group:		Archiving/Cd burning
 Url:		http://cdrkit.org/
@@ -33,6 +33,7 @@ Patch19:	cdrkit-1.1.11-ppc64le_elfheader.patch
 Patch20:	cdrkit-1.1.11-werror_gcc5.patch
 Patch21:	cdrkit-1.1.11-devname.patch
 Patch22:	cdrkit-1.1.11-sysmacros.patch
+Patch23:	cdrkit-1.1.11-gcc10.patch
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	pkgconfig(libcap)
